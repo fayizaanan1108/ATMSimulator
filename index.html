@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATM Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .atm {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2a9d8f;
+    }
+
+    button {
+      background: #2a9d8f;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #21867a;
+    }
+
+    input {
+      padding: 8px;
+      width: 80%;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="atm">
+    <h1>💳 ATM Simulator</h1>
+    <p id="balance">Balance: ₹1000</p>
+    <input type="number" id="amount" placeholder="Enter amount">
+    <div>
+      <button onclick="deposit()">Deposit</button>
+      <button onclick="withdraw()">Withdraw</button>
+    </div>
+  </div>
+
+  <script>
+    let balance = 1000;
+
+    function deposit() {
+      let amount = parseFloat(document.getElementById('amount').value);
+      if (amount > 0) {
+        balance += amount;
+        updateBalance();
+      } else {
+        alert('Enter a valid amount!');
+      }
+    }
+
+    function withdraw() {
+      let amount = parseFloat(document.getElementById('amount').value);
+      if (amount > 0 && amount <= balance) {
+        balance -= amount;
+        updateBalance();
+      } else {
+        alert('Invalid or insufficient amount!');
+      }
+    }
+
+    function updateBalance() {
+      document.getElementById('balance').innerText = `Balance: ₹${balance}`;
+      document.getElementById('amount').value = '';
+    }
+  </script>
+</body>
+</html>
